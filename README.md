@@ -24,27 +24,31 @@ It does not write or read anything from the real buffers
 ### Console
 #### debug(message: string): void
 Logs it's message to the standard out
-##### Related Steps
-```gherkin
-When debug message sent to console: "apple"
-Then it should write to standard out:
-"""
-apple
 
-"""
-```
 #### info(message: string): void
 Logs it's message to the standard out
-##### Related Steps
+
+#### warn(message: string): void
+Logs it's message to the standard error
+
+#### error(message: string): void
+Logs it's message to the standard error
+
+#### Related Steps
 ```gherkin
-When info message sent to console: "apple"
-Then it should write to standard out:
+When a "debug" level message sent to console: "apple"
+When an "error" level message sent to console: "apple"
+Then it should write to "stdout":
+"""
+apple
+
+"""
+Then it should write to "sdterr":
 """
 apple
 
 """
 ```
-
 
 
 ## Install

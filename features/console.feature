@@ -1,15 +1,29 @@
 Feature: Console
 
   Scenario: Write debug on console
-    When debug message sent to console: "apple"
-    Then it should write to standard out:
+    When a "debug" level message sent to console: "apple"
+    Then it should write to "stdout":
     """
     apple
 
     """
   Scenario: Write info on console
-    When info message sent to console: "apple"
-    Then it should write to standard out:
+    When an "info" level message sent to console: "apple"
+    Then it should write to "stdout":
+    """
+    apple
+
+    """
+  Scenario: Write warn on console
+    When a "warn" level message sent to console: "apple"
+    Then it should write to "stderr":
+    """
+    apple
+
+    """
+  Scenario: Write error on console
+    When an "error" level message sent to console: "apple"
+    Then it should write to "stderr":
     """
     apple
 

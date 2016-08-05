@@ -2,7 +2,9 @@
 
 const STREAM_BY_METHOD = {
   debug: 'stdout',
-  info: 'stdout'
+  info: 'stdout',
+  warn: 'stderr',
+  error: 'stderr',
 }
 
 export default {

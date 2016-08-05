@@ -23,8 +23,8 @@ export default function memoryFactory() {
     console: {
       debug: message => log('debug', message),
       info: message => log('info', message),
-      warn() {},
-      error() {}
+      warn: message => log('warn', message),
+      error: message => log('error', message)
     }
   })
 }

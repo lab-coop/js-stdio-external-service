@@ -4,18 +4,13 @@ import {expect} from 'chai'
 import {PassThrough} from 'stream'
 
 export = function(): void {
-  this.When(/^debug message sent to console: "([^"]*)"$/, function(message) {
+  this.When(/^an? "(debug|info|warn|error)" level message sent to console: "([^"]*)"$/, function(level, message) {
     const stdio = this.container.get('stdio')
-    stdio.console.debug(message)
+    stdio.console[level](message)
   })
 
-  this.When(/^info message sent to console: "([^"]*)"$/, function(message) {
+  this.Then(/^it should write to "(stderr|stdout)":$/, function(stream, message) {
     const stdio = this.container.get('stdio')
-    stdio.console.info(message)
-  })
-
-  this.Then(/^it should write to standard out:$/, function(message) {
-    const stdio = this.container.get('stdio')
-    expect(stdio.stdout().read().toString()).to.equal(message)
+    expect(stdio[stream]().read().toString()).to.equal(message)
   })
 }

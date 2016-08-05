@@ -17,3 +17,13 @@ test('info should write to stdout', t => {
   const {stream} = console.log({level: 'info', message: 'apple'})
   t.deepEqual(stream, 'stdout')
 })
+
+test('warn should write to stdout', t => {
+  const {stream} = console.log({level: 'warn', message: 'apple'})
+  t.deepEqual(stream, 'stderr')
+})
+
+test('error should write to stdout', t => {
+  const {stream} = console.log({level: 'error', message: 'apple'})
+  t.deepEqual(stream, 'stderr')
+})
