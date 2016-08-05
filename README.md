@@ -33,6 +33,19 @@ apple
 
 """
 ```
+#### info(message: string): void
+Logs it's message to the standard out
+##### Related Steps
+```gherkin
+When info message sent to console: "apple"
+Then it should write to standard out:
+"""
+apple
+
+"""
+```
+
+
 
 ## Install
 
