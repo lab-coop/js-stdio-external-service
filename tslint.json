@@ -1,0 +1,30 @@
+{
+  "rules": {
+    "indent": "spaces",
+    "max-line-length": 100,
+    "quotemark": "single",
+    "semicolon": "never",
+    "no-var-keyword": true,
+    "no-unused-variable": true,
+    "no-unused-expression": true,
+    "no-unreachable": true,
+    "no-trailing-whitespace": true,
+    "no-require-imports": true,
+    "no-null-keyword": true,
+    "no-empty": true,
+    "no-any": true,
+    "curly": true,
+    "trailing-comma": "always",
+    "typedef": [
+      true,
+      "call-signature",
+      "parameter",
+      "arrow-parameter",
+      "property-declaration",
+      "variable-declaration",
+      "member-variable-declaration"
+    ],
+    "typedef-whitespace": "onespace",
+    "use-strict": true
+  }
+}
