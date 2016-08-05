@@ -15,15 +15,6 @@
     "no-any": true,
     "curly": true,
     "trailing-comma": "always",
-    "typedef": [
-      true,
-      "call-signature",
-      "parameter",
-      "arrow-parameter",
-      "property-declaration",
-      "variable-declaration",
-      "member-variable-declaration"
-    ],
     "typedef-whitespace": "onespace",
     "use-strict": true
   }

@@ -4,7 +4,7 @@
   "description": "External service to use stdio with javascript",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && tslint index.ts implemenations/*.ts",
+    "build": "tsc && tslint index.ts implemenations/*.ts lib/*.ts",
     "test": "npm run test:tdd && npm run test:bdd",
     "test:tdd": "ava **/*.spec.js",
     "test:bdd": "cucumber.js --tags ~@e2e",
