@@ -1,5 +1,7 @@
 'use strict'
 
+import {Stdio} from './stdio'
+
 interface Di {
   get(name: string): ImplementationConfig,
   getImplementaion(name: string, implementation: string): Stdio
@@ -7,10 +9,6 @@ interface Di {
 
 interface ImplementationConfig {
   stdio: string
-}
-
-interface Stdio {
-
 }
 
 export default function stdio(di: Di): Stdio {

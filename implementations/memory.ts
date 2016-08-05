@@ -1,10 +1,12 @@
 'use strict'
 
 import {PassThrough} from 'stream'
+
+import {Stdio} from '../stdio'
 import stdioFactory from '../lib/stdio'
 import console from '../lib/console'
 
-export default function memoryFactory() {
+export default function memoryFactory(): Stdio {
   const stdio = stdioFactory({
     stdin: new PassThrough,
     stdout: new PassThrough,
