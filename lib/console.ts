@@ -1,13 +1,14 @@
 'use strict'
 
 const STREAM_BY_METHOD = {
-  debug: 'stdout'
+  debug: 'stdout',
+  info: 'stdout'
 }
 
 export default {
-  debug(message: string): {stream: string, message: string} {
+  log({level, message}: {level: string, message: string}): {stream: string, message: string} {
     return {
-      stream: STREAM_BY_METHOD['debug'],
+      stream: STREAM_BY_METHOD[level],
       message: message + '\n'
     }
   }

@@ -11,16 +11,18 @@ export default function memoryFactory() {
     stderr: new PassThrough
   })
 
+  function log(level: string, message: string) {
+    const action = console.log({level, message})
+    stdio.get(action.stream).write(action.message)
+  }
+
   return Object.freeze({
     stdin: () => stdio.get('stdin'),
     stdout: () => stdio.get('stdout'),
     stderr: () => stdio.get('stderr'),
     console: {
-      debug(message) {
-        const action = console.debug(message)
-        stdio.get(action.stream).write(action.message)
-      },
-      info() {},
+      debug: message => log('debug', message),
+      info: message => log('info', message),
       warn() {},
       error() {}
     }
