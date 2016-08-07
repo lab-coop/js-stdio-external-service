@@ -3,6 +3,6 @@
   "globalDependencies": {
     "chai": "registry:dt/chai#3.4.0+20160317120654",
     "cucumber": "registry:dt/cucumber#0.0.0+20160316171810",
-    "node": "registry:env/node#6.0.0+20160610031852"
+    "node": "registry:dt/node#6.0.0+20160802155038"
   }
 }

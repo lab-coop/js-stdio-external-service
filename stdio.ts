@@ -8,5 +8,8 @@ export interface Console {
 }
 
 export interface Stdio {
-  console: Console
+  console: Console,
+  stdin(): NodeJS.ReadWriteStream,
+  stdout(): NodeJS.ReadWriteStream,
+  stderr(): NodeJS.ReadWriteStream,
 }
