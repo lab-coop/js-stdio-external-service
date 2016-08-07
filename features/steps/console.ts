@@ -1,15 +1,9 @@
 'use strict'
 
 import {expect} from 'chai'
-import {Transform, PassThrough} from 'stream'
+import {PassThrough} from 'stream'
 
 export = function(): void {
-  this.Given(/^a Ceasar chiper tranform stream attached to "(stderr|stdout|stdin)":$/, function (stream) {
-    const stdio = this.container.get('stdio')
-    stdio.setTransformFor(stream, createTransformer())
-    this.pipeStdio(stream)
-  })
-
   this.When(/^a Buffer is sent to the "(stderr|stdout)" containing:$/, function(stream, bufferContent) {
     const stdio = this.container.get('stdio')
     stdio[stream]().write(bufferContent);
@@ -22,12 +16,12 @@ export = function(): void {
 
   this.When(/to "([^"]*)" is written:/, function(stream, message) {
     const stdio = this.container.get('stdio')
-    this.context[stream].write(message)
+    this.context.stdio[stream].write(message)
   })
 
   this.Then(/^it should write to "(stderr|stdout)":$/, function(stream, message) {
     const stdio = this.container.get('stdio')
-    expect(this.context[stream].read().toString()).to.equal(message)
+    expect(this.context.stdio[stream].read().toString()).to.equal(message)
   })
 
   this.Then(/^it should read from "([^"]*)":$/, function(stream, message) {
@@ -36,13 +30,3 @@ export = function(): void {
   })
 }
 
-function createTransformer() {
-  const chiper = c => String.fromCharCode(c.charCodeAt(0) + 1);
-  const transformer = new Transform({
-    transform(chunk, encoding, callback) {
-      this.push(chunk.toString().split('').map(chiper).join(''))
-      callback()
-    }
-  })
-  return transformer
-}

@@ -1,21 +1,18 @@
 'use strict'
 
-import {initStreams} from './streams'
+import {StdioStreams} from '../stdio'
 
-interface AllStreams {
-  stdin: NodeJS.ReadableStream,
-  stdout: NodeJS.WritableStream,
-  stderr: NodeJS.WritableStream,
-}
-
-export default function(options: AllStreams) {
-  const transformers = initStreams()
+export default function(initialOptions: StdioStreams) {
+  const streams: StdioStreams = Object.assign({}, initialOptions)
 
   return Object.freeze({
-    get: (name: string) => transformers[name],
-    setTransformFor(name, transformer) {
-      transformers[name] = transformer
-    }
+    get: (name: string): NodeJS.ReadWriteStream => streams[name],
+    getAll: (): StdioStreams => streams,
+    setStream(options) {
+      Object.keys(options).forEach(name => {
+        streams[name] = options[name]
+      })
+    },
   })
 }
 

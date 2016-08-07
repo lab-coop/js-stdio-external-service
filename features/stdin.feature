@@ -10,14 +10,3 @@ Feature: stdin
     apple
     """
 
-  Scenario: add transform stream
-    Given a Ceasar chiper tranform stream attached to "stdin":
-    When to "stdin" is written:
-    """
-    apple
-    """
-    Then it should read from "stdin":
-    """
-    bqqmf
-    """
-

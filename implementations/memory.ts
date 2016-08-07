@@ -24,13 +24,14 @@ export default function memoryFactory(): Stdio {
     stdin: () => stdio.get('stdin'),
     stdout: () => stdio.get('stdout'),
     stderr: () => stdio.get('stderr'),
+    getAll: stdio.getAll,
     console: {
       debug: message => log('debug', message),
       info: message => log('info', message),
       warn: message => log('warn', message),
       error: message => log('error', message)
     },
-    setTransformFor: stdio.setTransformFor,
+    setStream: stdio.setStream,
   })
 }
 
