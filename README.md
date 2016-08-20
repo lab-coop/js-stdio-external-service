@@ -34,6 +34,11 @@ Logs it's message to the standard error
 #### error(message: string): void
 Logs it's message to the standard error
 
+### Readline
+#### readline(message: string): Promise<string>
+Prints the given message and waits for an input,
+when the input is entered it resolves the returned promise with the input
+
 #### Related Steps
 ```gherkin
 When a "debug" level message sent to console: "apple"

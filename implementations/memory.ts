@@ -22,7 +22,7 @@ export default function memoryFactory(): Stdio {
     stdio.get(action.stream).write(action.message)
   }
 
-  function readline(promptText) {
+  function readline(promptText: string): Promise<string> {
     const rl = createInterface({
       input: stdio.get('stdin'),
       output: stdio.get('stdout')
