@@ -5,7 +5,7 @@ import {PassThrough} from 'stream'
 const auger = require('auger') // no typings yet
 
 import {Stdio} from '../stdio'
-import stdioFactory from '../lib/stdio'
+import streamStoreFactory from '../lib/stream-store'
 import consoleActionCreator from '../lib/console'
 
 const FAKE_STREAMS = {
@@ -15,17 +15,17 @@ const FAKE_STREAMS = {
 };
 
 export default function memoryFactory(): Stdio {
-  const stdio = stdioFactory(FAKE_STREAMS)
+  const streamStore = streamStoreFactory(FAKE_STREAMS)
 
   function log(level: string, message: string) {
     const action = consoleActionCreator.log({level, message})
-    stdio.get(action.stream).write(action.message)
+    streamStore.get(action.stream).write(action.message)
   }
 
   function readline(promptText: string): Promise<string> {
     const rl = createInterface({
-      input: stdio.get('stdin'),
-      output: stdio.get('stdout')
+      input: streamStore.get('stdin'),
+      output: streamStore.get('stdout')
     })
     const aug = auger(rl)
     return aug.ask(promptText)
@@ -33,17 +33,17 @@ export default function memoryFactory(): Stdio {
 
   return Object.freeze({
     readline,
-    stdin: () => stdio.get('stdin'),
-    stdout: () => stdio.get('stdout'),
-    stderr: () => stdio.get('stderr'),
-    getAll: stdio.getAll,
+    stdin: () => streamStore.get('stdin'),
+    stdout: () => streamStore.get('stdout'),
+    stderr: () => streamStore.get('stderr'),
+    getAll: streamStore.getAll,
     console: {
       debug: message => log('debug', message),
       info: message => log('info', message),
       warn: message => log('warn', message),
       error: message => log('error', message)
     },
-    setStream: stdio.setStream,
+    setStream: streamStore.setStream,
   })
 }
 
