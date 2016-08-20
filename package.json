@@ -1,6 +1,6 @@
 {
   "name": "lab-stdio",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "External service to use stdio with javascript",
   "main": "index.js",
   "scripts": {
@@ -30,5 +30,8 @@
   },
   "engines": {
     "node": ">=6.2.0"
+  },
+  "dependencies": {
+    "auger": "^1.0.1"
   }
 }

@@ -12,7 +12,7 @@ export default function(initialOptions: StdioStreams) {
       Object.keys(options).forEach(name => {
         streams[name] = options[name]
       })
-    },
+    }
   })
 }
 

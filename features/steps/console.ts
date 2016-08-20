@@ -28,5 +28,17 @@ export = function(): void {
     const stdio = this.container.get('stdio')
     expect(stdio[stream]().read().toString()).to.equal(message)
   })
+
+  this.Given(/^a prompt with a question "([^"]*)"$/, function(message) {
+    const stdio = this.container.get('stdio')
+    this.context.prompt = stdio.readline(message)
+  })
+
+  this.Then(/^it should read line "([^"]*)"$/, function(message) {
+    const stdio = this.container.get('stdio')
+    return this.context.prompt.then((input) => {
+      expect(input).to.equal(message)
+    })
+  })
 }
 

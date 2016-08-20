@@ -1,6 +1,8 @@
 'use strict'
 
+import {createInterface} from 'readline'
 import {PassThrough} from 'stream'
+const auger = require('auger') // no typings yet
 
 import {Stdio} from '../stdio'
 import stdioFactory from '../lib/stdio'
@@ -20,7 +22,17 @@ export default function memoryFactory(): Stdio {
     stdio.get(action.stream).write(action.message)
   }
 
+  function readline(promptText) {
+    const rl = createInterface({
+      input: stdio.get('stdin'),
+      output: stdio.get('stdout')
+    })
+    const aug = auger(rl)
+    return aug.ask(promptText)
+  }
+
   return Object.freeze({
+    readline,
     stdin: () => stdio.get('stdin'),
     stdout: () => stdio.get('stdout'),
     stderr: () => stdio.get('stderr'),
